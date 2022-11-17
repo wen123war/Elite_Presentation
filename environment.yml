@@ -4,6 +4,9 @@ channels:
 dependencies:
   - numpy
   - pandas
+  - nodejs
+  - pyscal
+  - pyiron_base
   - ase
   - python
   - lammps
