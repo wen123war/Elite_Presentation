@@ -1,0 +1,13 @@
+name: MD_melting
+channels:
+  - conda-forge
+dependencies:
+  - numpy
+  - pandas
+  - ase
+  - python
+  - lammps
+  - nglview
+  - jupyterlab
+  - pip:
+      - jupyterlab_latex
