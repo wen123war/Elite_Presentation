@@ -1,15 +1,18 @@
-name: MD_melting
+name: example-environment
 channels:
   - conda-forge
 dependencies:
-  - numpy
-  - nodejs
-  - pyscal
-  - pyiron_base
   - ase
+  - ipympl
+  - nodejs
   - python
+  - pyiron
+  - pyiron_base
   - lammps
+  - iprpy-data
   - nglview
+  - pyscal
   - jupyterlab
+  - pyiron-data >=0.0.5
   - pip:
       - jupyterlab_latex
