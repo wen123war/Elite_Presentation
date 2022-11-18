@@ -2,7 +2,6 @@ name: example-environment
 channels:
   - conda-forge
 dependencies:
-  - ase
   - python
   - pyiron
   - pyiron_base
@@ -11,5 +10,3 @@ dependencies:
   - pyscal
   - jupyterlab
   - pyiron-data >=0.0.5
-  - pip:
-      - jupyterlab_latex
