@@ -3,13 +3,10 @@ channels:
   - conda-forge
 dependencies:
   - ase
-  - ipympl
-  - nodejs
   - python
   - pyiron
   - pyiron_base
   - lammps
-  - iprpy-data
   - nglview
   - pyscal
   - jupyterlab
