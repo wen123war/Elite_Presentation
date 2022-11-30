@@ -4,6 +4,4 @@ channels:
   - https://conda.ovito.org
 dependencies:
   - lammps
-  - pip
-  - pip:
-      - ovito
+  - ovito=3
