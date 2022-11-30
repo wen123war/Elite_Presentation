@@ -3,7 +3,7 @@ channels:
   - conda-forge
   - https://conda.ovito.org
 dependencies:
-  - python
   - lammps
-  - jupyterlab
-  - ovito>=3
+  - pip
+  - pip:
+      - ovito
