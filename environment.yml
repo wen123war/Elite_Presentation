@@ -1,12 +1,9 @@
 name: example-environment
 channels:
   - conda-forge
+  - https://conda.ovito.org
 dependencies:
   - python
-  - pyiron
-  - pyiron_base
   - lammps
-  - nglview
-  - pyscal
   - jupyterlab
-  - pyiron-data >=0.0.5
+  - ovito>=3
