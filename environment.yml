@@ -4,8 +4,4 @@ channels:
   - conda-forge
 dependencies:
   - lammps
- 
-channels:
-  - https://conda.ovito.org
-dependencies:
-  - ovito-jupyter
+  - ovito
