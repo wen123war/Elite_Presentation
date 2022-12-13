@@ -1,7 +1,0 @@
-name: lammps_ovito
-channels:
-  - https://conda.ovito.org
-  - conda-forge
-dependencies:
-  - lammps
-  - ovito
