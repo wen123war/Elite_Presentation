@@ -1,5 +1,8 @@
 FROM wen123war/moleculedynamic:1.0
 
+WORKDIR /
+USER root
+
 RUN apt-get update && apt-get install python3-pip -y
 RUN pip3 install jupyterlab
 ARG NB_USER=wen123war
