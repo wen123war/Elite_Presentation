@@ -583,7 +583,7 @@ def input_melting(s:MD_system):
     return System_melting
 
 
-def input_phase_transformation(s:MD_system):
+def input_solid_to_solid(s:MD_system):
     System_PT = MD_system()
 
     title_show = widgets.HTML(value="<h1>Molecular Dynamics Simulation of a solid-solid transformation</h1>", layout=Layout(width='100%', height='100px'))
@@ -789,6 +789,6 @@ if __name__ == '__main__':
     # Show the animation
     animate(System_melting)
     
-    System_PT = input_phase_transformation(MD_system)
+    System_PT = input_solid_to_solid(MD_system)
     # Show the animation
     animate(System_PT)
