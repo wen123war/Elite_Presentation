@@ -292,8 +292,14 @@ def animate(s:MD_system):
         layout=Layout(width='auto', height='50px')
     )
 
+    # older ovito version (3.7.12) uses dataset
+    if ('dataset' in dir(vp)):
+        scene = vp.dataset
+    else: # newer version (3.9.2) uses scene
+        scene = vp.scene
+
     time_show = widgets.HTML(
-        value=f"Time: {timestep[vp.dataset.anim.current_frame]/1000:5.0f} ps",
+        value=f"Time: {timestep[scene.anim.current_frame]/1000:5.0f} ps",
         min=0,
         max=max_frame - 1,
         layout=Layout(width='auto', height='auto', fontsize=50),
@@ -301,7 +307,7 @@ def animate(s:MD_system):
     )
 
     temperature_show = widgets.HTML(
-        value=f"<h3>Temperature: {temperature[vp.dataset.anim.current_frame]:4.0f} K</h3>",
+        value=f"<h3>Temperature: {temperature[scene.anim.current_frame]:4.0f} K</h3>",
         min=0,
         max=max_frame - 1,
         layout=Layout(width='auto', height='auto'),
@@ -312,13 +318,13 @@ def animate(s:MD_system):
     widgets.jslink((play_image, 'value'), (control, 'value'))
 
     def on_frame_change(change):
-      temperature_show.value = f"<h3>Temperature: {temperature[vp.dataset.anim.current_frame]:4.0f} K</h3>"
-      time_show.value = f"Time: {timestep[vp.dataset.anim.current_frame]/1000:5.0f} ps"
+      temperature_show.value = f"<h3>Temperature: {temperature[scene.anim.current_frame]:4.0f} K</h3>"
+      time_show.value = f"Time: {timestep[scene.anim.current_frame]/1000:5.0f} ps"
     
     play_image.observe(on_frame_change, "value")
 
     def play(vp, x, w):
-        vp.dataset.anim.current_frame = x
+        scene.anim.current_frame = x
         w.refresh()
 
     window = vp.create_jupyter_widget()
@@ -489,8 +495,15 @@ def input_melting(s:MD_system):
 
         vp.zoom_all()
         window_tmp = vp.create_jupyter_widget()
-        window_1.camera_params = window_tmp.camera_params
-        window_1.orbit_center = vp.orbit_center
+
+        # older ovito version (3.7.12) uses no underscore
+        if ('camera_params' and 'orbit_center' in dir(window_1)):
+            window_1.camera_params = window_tmp.camera_params
+            window_1.orbit_center = vp.orbit_center
+        else: # newer version (3.9.2) uses _camera_params and _orbit_center
+            window_1._camera_params = window_tmp._camera_params
+            window_1._orbit_center = vp.orbit_center # not here in Viewport.orbit_center
+
         window_1.refresh()
         pipeline.remove_from_scene()
 
