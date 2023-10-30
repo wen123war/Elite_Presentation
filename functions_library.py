@@ -339,7 +339,13 @@ def animate(s:MD_system):
     
     def close_click(sender):
         pipeline.remove_from_scene()
-        window.scene.clear()
+        
+        # Here change the code for new/old version
+        # older ovito version (3.7.12)
+        if ('scene' in dir(window)): # 
+            window.scene.clear() 
+        else: # newer ovito version (3.9.2)
+            window._scene.clear() 
         close_button.button_style='danger'
 
     # connect the function with the button
@@ -707,8 +713,15 @@ write_data ./structures/initial_{System_PT.element}
 
         vp.zoom_all()
         window_tmp = vp.create_jupyter_widget()
-        window_1.camera_params = window_tmp.camera_params
-        window_1.orbit_center = vp.orbit_center
+        
+        # older ovito version (3.7.12) uses no underscore # same change as input_melting
+        if ('camera_params' and 'orbit_center' in dir(window_1)):
+            window_1.camera_params = window_tmp.camera_params
+            window_1.orbit_center = vp.orbit_center
+        else: # newer version (3.9.2) uses _camera_params and _orbit_center
+            window_1._camera_params = window_tmp._camera_params
+            window_1._orbit_center = vp.orbit_center # not here in Viewport.orbit_center
+            
         window_1.refresh()
         pipeline.remove_from_scene()
 
